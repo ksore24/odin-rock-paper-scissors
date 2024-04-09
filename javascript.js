@@ -1,12 +1,14 @@
-alert('Welcome to a game of rock, paper, scissors. \nOpen the console for game score and results.');
-var playerChoiceNumber = 0;
-var computerChoiceNumber = 0;
+console.log('Welcome to a game of rock, paper, scissors.');
+var playerChoiceNumber;
+var computerChoiceNumber;
+var playerChoice;
+var computerChoice;
 var playerScore = 0;
 var computerScore = 0;
-var result = "";
+var result;
 
 function getPlayerChoice(){
-    var playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
+    playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
     playerChoice = playerChoice.toLowerCase();
     if(playerChoice == "rock")
     {
@@ -32,8 +34,8 @@ function getPlayerChoice(){
 }
 
 function getComputerChoice(){
-    var computerChoiceNumber = Math.round(Math.random() * 2);
-    var computerChoice;
+    computerChoiceNumber = Math.floor(Math.random() * 3);
+    computerChoice;
     if(computerChoiceNumber == 0){
         computerChoice = "rock";
     }
@@ -73,20 +75,23 @@ function getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, comp
         result = `You tied! You played ${playerChoice} and the computer played ${computerChoice}`;
     }
 
-    return result;
+    console.log(result);
 
 }
 
-if(playerScore < 3 && computerScore < 3){
-    console.log(`Best of five games wins: Score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-
-    console.log(getResults(getPlayerChoice(), getComputerChoice()));
+while(playerScore < 3 && computerScore < 3){
+    console.log(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    playerChoiceNumber, playerChoice = getPlayerChoice();
+    computerChoiceNumber, computerChoice = getComputerChoice();
+    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
 }
 
-else if(playerScore == 3){
-    alert("YOU WIN");
+if(playerScore == 3){
+    console.log("YOU WIN");
+    console.log(`Player Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
 
-else if(computerScore == 3){
-    alert("You lose. Try again.");
+if(computerScore == 3){
+    console.log("You Lose. Try again.");
+    console.log(`Player Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
