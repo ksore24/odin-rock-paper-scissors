@@ -1,4 +1,5 @@
 console.log('Welcome to a game of rock, paper, scissors.');
+alert("Welcome to rock, paper, scissors. Check the console for game results and statistics.");
 var playerChoiceNumber;
 var computerChoiceNumber;
 var playerChoice;
@@ -76,22 +77,24 @@ function getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, comp
     }
 
     console.log(result);
+    alert(result);
 
 }
 
 while(playerScore < 3 && computerScore < 3){
     console.log(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    alert(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
     playerChoiceNumber, playerChoice = getPlayerChoice();
     computerChoiceNumber, computerChoice = getComputerChoice();
     getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
 }
 
 if(playerScore == 3){
-    console.log("YOU WIN");
-    console.log(`Player Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    console.log(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
 
 if(computerScore == 3){
-    console.log("You Lose. Try again.");
-    console.log(`Player Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    console.log(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
