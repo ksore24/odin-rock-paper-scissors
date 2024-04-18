@@ -1,5 +1,19 @@
-console.log('Welcome to a game of rock, paper, scissors.');
-alert("Welcome to rock, paper, scissors. Check the console for game results and statistics.");
+const header = document.querySelector("h3");
+const buttons = document.querySelector(".buttons");
+header.appendChild(buttons);
+
+const rockButton = document.createElement("button");
+rockButton.textContent = "ROCK";
+buttons.appendChild(rockButton);
+
+const paperButton = document.createElement("button");
+paperButton.textContent = "PAPER";
+buttons.appendChild(paperButton);
+
+const scissorsButton = document.createElement("button");
+scissorsButton.textContent = "SCISSORS";
+buttons.appendChild(scissorsButton);
+
 var playerChoiceNumber;
 var computerChoiceNumber;
 var playerChoice;
@@ -8,8 +22,10 @@ var playerScore = 0;
 var computerScore = 0;
 var result;
 
+const scoreTable = document.createElement("table");
+
 function getPlayerChoice(){
-    playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
+    // playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
     playerChoice = playerChoice.toLowerCase();
     if(playerChoice == "rock")
     {
@@ -27,7 +43,7 @@ function getPlayerChoice(){
     }
 
     else{
-        alert("try again");
+        // alert("try again");
         getPlayerChoice();
     }
 
@@ -77,13 +93,13 @@ function getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, comp
     }
 
     console.log(result);
-    alert(result);
+    // alert(result);
 
 }
 
 while(playerScore < 3 && computerScore < 3){
     console.log(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    alert(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    // alert(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
     playerChoiceNumber, playerChoice = getPlayerChoice();
     computerChoiceNumber, computerChoice = getComputerChoice();
     getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
@@ -91,10 +107,10 @@ while(playerScore < 3 && computerScore < 3){
 
 if(playerScore == 3){
     console.log(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    // alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
 
 if(computerScore == 3){
     console.log(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+    // alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
