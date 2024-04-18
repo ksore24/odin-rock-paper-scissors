@@ -22,8 +22,6 @@ var playerScore = 0;
 var computerScore = 0;
 var result;
 
-const scoreTable = document.createElement("table");
-
 function getPlayerChoice(){
     // playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
     playerChoice = playerChoice.toLowerCase();
