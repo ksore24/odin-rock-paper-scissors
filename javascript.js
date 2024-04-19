@@ -31,21 +31,7 @@ function rockFunction()
 {
     playerChoice = "rock";
     playerChoiceNumber = 0;
-    getComputerChoice();
-    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
-    tablePlayerScore.textContent = playerScore;
-    tableComputerScore.textContent = computerScore;
-    score.appendChild(tablePlayerScore);
-    score.appendChild(tableComputerScore);
-    const selectionsLog = document.querySelector(".selections");
-    const newSelection = document.createElement("tr");
-    const playerSelection = document.createElement("td");
-    const computerSelection = document.createElement("td");
-    playerSelection.textContent = playerChoice;
-    computerSelection.textContent = computerChoice;
-    newSelection.appendChild(playerSelection);
-    newSelection.appendChild(computerSelection);
-    selectionsLog.appendChild(newSelection);
+    playRound(playerChoice, playerChoiceNumber);
 }
 
 paperButton.addEventListener("click", paperFunction);
@@ -53,21 +39,7 @@ function paperFunction()
 {
     playerChoice = "paper";
     playerChoiceNumber = 1;
-    getComputerChoice();
-    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
-    tablePlayerScore.textContent = playerScore;
-    tableComputerScore.textContent = computerScore;
-    score.appendChild(tablePlayerScore);
-    score.appendChild(tableComputerScore);
-    const selectionsLog = document.querySelector(".selections");
-    const newSelection = document.createElement("tr");
-    const playerSelection = document.createElement("td");
-    const computerSelection = document.createElement("td");
-    playerSelection.textContent = playerChoice;
-    computerSelection.textContent = computerChoice;
-    newSelection.appendChild(playerSelection);
-    newSelection.appendChild(computerSelection);
-    selectionsLog.appendChild(newSelection);
+    playRound(playerChoice, playerChoiceNumber);
 }
 
 scissorsButton.addEventListener("click", scissorsFunction);
@@ -75,21 +47,7 @@ function scissorsFunction()
 {
     playerChoice = "scissors";
     playerChoiceNumber = 2;
-    getComputerChoice();
-    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
-    tablePlayerScore.textContent = playerScore;
-    tableComputerScore.textContent = computerScore;
-    score.appendChild(tablePlayerScore);
-    score.appendChild(tableComputerScore);
-    const selectionsLog = document.querySelector(".selections");
-    const newSelection = document.createElement("tr");
-    const playerSelection = document.createElement("td");
-    const computerSelection = document.createElement("td");
-    playerSelection.textContent = playerChoice;
-    computerSelection.textContent = computerChoice;
-    newSelection.appendChild(playerSelection);
-    newSelection.appendChild(computerSelection);
-    selectionsLog.appendChild(newSelection);
+    playRound(playerChoice, playerChoiceNumber);
 }
 
 function getComputerChoice(){
@@ -130,17 +88,43 @@ function getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, comp
         
     }
 
+    return computerScore, playerScore;
+
+}
+
+function printResults(playerChoice, computerChoice, playerScore, computerScore)
+{
+    tablePlayerScore.textContent = playerScore;
+    tableComputerScore.textContent = computerScore;
+    score.appendChild(tablePlayerScore);
+    score.appendChild(tableComputerScore);
+    const selectionsLog = document.querySelector(".selections");
+    const newSelection = document.createElement("tr");
+    const playerSelection = document.createElement("td");
+    const computerSelection = document.createElement("td");
+    playerSelection.textContent = playerChoice;
+    computerSelection.textContent = computerChoice;
+    newSelection.appendChild(playerSelection);
+    newSelection.appendChild(computerSelection);
+    selectionsLog.appendChild(newSelection);
+}
+
+function playRound(playerChoice, playerChoiceNumber)
+{
+    getComputerChoice();
+    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
+    printResults(playerChoice, computerChoice, playerScore, computerScore);
+    setTimeout(checkForWin, 0);
+}
+
+function checkForWin(){
     if(playerScore == 3){
-        console.log(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         location.reload();
     }
     
     if(computerScore == 3){
-        console.log(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         location.reload();
     }
-    return computerScore, playerScore;
-
 }
