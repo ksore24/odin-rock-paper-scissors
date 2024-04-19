@@ -1,3 +1,11 @@
+var playerChoiceNumber;
+var computerChoiceNumber;
+var playerChoice;
+var computerChoice;
+var playerScore = 0;
+var computerScore = 0;
+var result;
+
 const header = document.querySelector("h3");
 const buttons = document.querySelector(".buttons");
 header.appendChild(buttons);
@@ -14,38 +22,74 @@ const scissorsButton = document.createElement("button");
 scissorsButton.textContent = "SCISSORS";
 buttons.appendChild(scissorsButton);
 
-var playerChoiceNumber;
-var computerChoiceNumber;
-var playerChoice;
-var computerChoice;
-var playerScore = 0;
-var computerScore = 0;
-var result;
+const score = document.querySelector(".score");
+const tablePlayerScore = document.createElement("td");
+const tableComputerScore = document.createElement("td");
 
-function getPlayerChoice(){
-    // playerChoice = prompt("Enter \"rock\", \"paper\", or \"scissors\" to choose an option");
-    playerChoice = playerChoice.toLowerCase();
-    if(playerChoice == "rock")
-    {
-        playerChoiceNumber = 0;
-    }
+rockButton.addEventListener("click", rockFunction);
+function rockFunction()
+{
+    playerChoice = "rock";
+    playerChoiceNumber = 0;
+    getComputerChoice();
+    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
+    tablePlayerScore.textContent = playerScore;
+    tableComputerScore.textContent = computerScore;
+    score.appendChild(tablePlayerScore);
+    score.appendChild(tableComputerScore);
+    const selectionsLog = document.querySelector(".selections");
+    const newSelection = document.createElement("tr");
+    const playerSelection = document.createElement("td");
+    const computerSelection = document.createElement("td");
+    playerSelection.textContent = playerChoice;
+    computerSelection.textContent = computerChoice;
+    newSelection.appendChild(playerSelection);
+    newSelection.appendChild(computerSelection);
+    selectionsLog.appendChild(newSelection);
+}
 
-    else if(playerChoice == "paper")
-    {
-        playerChoiceNumber = 1;
-    }
-    
-    else if(playerChoice == "scissors")
-    {
-        playerChoiceNumber = 2;
-    }
+paperButton.addEventListener("click", paperFunction);
+function paperFunction()
+{
+    playerChoice = "paper";
+    playerChoiceNumber = 1;
+    getComputerChoice();
+    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
+    tablePlayerScore.textContent = playerScore;
+    tableComputerScore.textContent = computerScore;
+    score.appendChild(tablePlayerScore);
+    score.appendChild(tableComputerScore);
+    const selectionsLog = document.querySelector(".selections");
+    const newSelection = document.createElement("tr");
+    const playerSelection = document.createElement("td");
+    const computerSelection = document.createElement("td");
+    playerSelection.textContent = playerChoice;
+    computerSelection.textContent = computerChoice;
+    newSelection.appendChild(playerSelection);
+    newSelection.appendChild(computerSelection);
+    selectionsLog.appendChild(newSelection);
+}
 
-    else{
-        // alert("try again");
-        getPlayerChoice();
-    }
-
-    return playerChoiceNumber, playerChoice;
+scissorsButton.addEventListener("click", scissorsFunction);
+function scissorsFunction()
+{
+    playerChoice = "scissors";
+    playerChoiceNumber = 2;
+    getComputerChoice();
+    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
+    tablePlayerScore.textContent = playerScore;
+    tableComputerScore.textContent = computerScore;
+    score.appendChild(tablePlayerScore);
+    score.appendChild(tableComputerScore);
+    const selectionsLog = document.querySelector(".selections");
+    const newSelection = document.createElement("tr");
+    const playerSelection = document.createElement("td");
+    const computerSelection = document.createElement("td");
+    playerSelection.textContent = playerChoice;
+    computerSelection.textContent = computerChoice;
+    newSelection.appendChild(playerSelection);
+    newSelection.appendChild(computerSelection);
+    selectionsLog.appendChild(newSelection);
 }
 
 function getComputerChoice(){
@@ -66,49 +110,37 @@ function getComputerChoice(){
 function getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice){
     if(Math.abs(computerChoiceNumber - playerChoiceNumber) == 2){
         if(computerChoiceNumber > playerChoiceNumber){
-            result = `You win! You played ${playerChoice} and the computer played ${computerChoice}`;
             playerScore++;
         }
         if(playerChoiceNumber > computerChoiceNumber){
-            result = `You lost! You played ${playerChoice} and the computer played ${computerChoice}`;
             computerScore++;
         }
     }
 
     if(Math.abs(computerChoiceNumber - playerChoiceNumber) == 1){
         if(playerChoiceNumber > computerChoiceNumber){
-            result = `You win! You played ${playerChoice} and the computer played ${computerChoice}`;
             playerScore++;
         }
         if(computerChoiceNumber > playerChoiceNumber){
-            result = `You lost! You played ${playerChoice} and the computer played ${computerChoice}`;
             computerScore++;
         }
     }
 
     if(Math.abs(computerChoiceNumber - playerChoiceNumber) == 0){
-        result = `You tied! You played ${playerChoice} and the computer played ${computerChoice}`;
+        
     }
 
-    console.log(result);
-    // alert(result);
+    if(playerScore == 3){
+        console.log(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+        alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+        location.reload();
+    }
+    
+    if(computerScore == 3){
+        console.log(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+        alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
+        location.reload();
+    }
+    return computerScore, playerScore;
 
-}
-
-while(playerScore < 3 && computerScore < 3){
-    console.log(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    // alert(`Best of five games wins - score is currently: \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    playerChoiceNumber, playerChoice = getPlayerChoice();
-    computerChoiceNumber, computerChoice = getComputerChoice();
-    getResults(playerChoiceNumber, playerChoice, computerChoiceNumber, computerChoice);
-}
-
-if(playerScore == 3){
-    console.log(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    // alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-}
-
-if(computerScore == 3){
-    console.log(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
-    // alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
 }
