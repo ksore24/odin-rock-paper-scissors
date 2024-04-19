@@ -118,12 +118,12 @@ function playRound(playerChoice, playerChoiceNumber)
 }
 
 function checkForWin(){
-    if(playerScore == 3){
+    if(playerScore == 5){
         alert(`YOU WIN \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         location.reload();
     }
     
-    if(computerScore == 3){
+    if(computerScore == 5){
         alert(`You Lose. Try again. \nPlayer Score: ${playerScore} \nComputer Score: ${computerScore}`);
         location.reload();
     }
